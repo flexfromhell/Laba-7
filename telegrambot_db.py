@@ -8,7 +8,6 @@ def getResponseDay(day, status):
         teacher WHERE timetable.status = %s AND timetable.day_name = %s AND timetable.subject_name = teacher.subject_name ORDER BY timetable.start_time", (status, day))
     records = list(cursor.fetchall())
     response = day + "\n—————————\n"
-
     for elem in records:
         if elem[1] == "Занятий нет":
             response += elem[1]
@@ -24,7 +23,6 @@ def getResponseWeek(status):
     day = records[0][0]
     response = ""
     k = 0
-
     for elem in records:
         if elem[2] == "Занятий нет":
             response += "\n" + elem[0] + "\n—————————\n" + elem[2] + "\n————————\n"
@@ -41,5 +39,4 @@ def getResponseWeek(status):
                     response += "\n" + day + "\n—————————\n"
                     k = 1
                 response += "\n".join(elem[1:]) + "\n—————————\n"
-
     return response
